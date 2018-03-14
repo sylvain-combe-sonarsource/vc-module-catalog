@@ -449,6 +449,14 @@
                     "placeholder": "Add number",
                     "description": "Bounds will be sorted automatically before saving. Price ranges are constructed as follows: Under [bound 1], [bound 1] to [bound 2], ... , Over [bound N]"
                 }
+            },
+            "item-product-ingredient-list": {
+               "labels": {
+                   "supplierName": "Supplier name",
+                   "ammount": "Ammount",
+                   "measure": "Measure",
+                   "sortOrder": "Sort Order"
+               }
             }
         },
         "widgets": {
@@ -488,6 +496,10 @@
             "itemVariation": {
                 "blade-subtitle": "Item variations",
                 "title": "Variations"
+            },
+            "itemIngredient": {
+                "blade-subtitle": "Product Ingredients",
+                "title": "Ingredients"
             },
             "itemDimensions": {
                 "title": "Weight & Size",

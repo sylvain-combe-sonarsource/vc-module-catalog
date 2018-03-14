@@ -176,7 +176,12 @@ angular.module(catalogsModuleName, ['ui.grid.validate', 'ui.grid.infiniteScroll'
 	    };
 	    widgetService.registerWidget(catalogPropertyWidget, 'catalogDetail');
 	
-
+        //Register indredient widget
+	    var itemIngredientWidget = {
+	        controller: 'virtoCommerce.catalogModule.itemIngredientWidgetController',
+	        template: 'Modules/$(VirtoCommerce.Catalog)/Scripts/widgets/itemIngredientWidget.tpl.html'
+	    };
+        widgetService.registerWidget(itemIngredientWidget, 'itemDetail');
 	    //Security scopes
 	    //Register permission scopes templates used for scope bounded definition in role management ui
 
