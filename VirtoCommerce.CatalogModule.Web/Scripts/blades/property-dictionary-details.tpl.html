@@ -8,46 +8,67 @@
                             <div class="form-group __info list">
                                 <label class="form-label">{{ 'catalog.blades.property-dictionary.labels.alias' | translate }}</label>
                                 <div class="form-input">
-                                    <input ng-class="{'error': detailForm.name.$invalid && !detailForm.name.$pristine}" required placeholder="{{ 'imageTools.blades.setting-detail.placeholders.name' | translate }}"
-                                        class="form-control" ng-model="blade.currentEntity.alias" name="alias" type="text" />
+                                    <input ng-class="{'error': detailForm.alias.$invalid && !detailForm.alias.$pristine}" required placeholder="{{ 'catalog.blades.property-dictionary.placeholders.alias' | translate }}"
+                                        class="form-control" ng-model="blade.alias" name="alias" type="text" />
                                 </div>
                                 <div class="list-descr">{{ 'catalog.blades.property-dictionary.labels.alias-description' | translate }}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="column">
-                            <div class="form-group __info list">
-                                <label class="form-label">{{ 'catalog.blades.property-dictionary.languages.english' | translate }}</label>
-                                <div class="form-input">
-                                    <input ng-class="{'error': detailForm.name.$invalid && !detailForm.name.$pristine}" required placeholder="{{ 'imageTools.blades.setting-detail.placeholders.name' | translate }}"
-                                        class="form-control" ng-model="blade.currentEntity.value" name="value" type="text" />
+
+                    <fieldset ng-if="!blade.multilanguage">
+                        <div class="form-group">
+                            <div class="column">
+                                <div class="form-group __info list">
+                                    <label class="form-label">{{ 'catalog.blades.property-dictionary.labels.value' | translate }}</label>
+                                    <div class="form-input">
+                                        <input ng-class="{'error': detailForm.singleLanguageValue.$invalid && !detailForm.singleLanguageValue.$pristine}" required
+                                            placeholder="{{ 'catalog.blades.property-dictionary.placeholders.value' | translate }}"
+                                            class="form-control" ng-model="singleLanguageValue" name="singleLanguageValue" type="text"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="column">
-                            <div class="form-group __info list">
-                                <label class="form-label">{{ 'catalog.blades.property-dictionary.languages.german' | translate }}</label>
-                                <div class="form-input">
-                                    <input ng-class="{'error': detailForm.name.$invalid && !detailForm.name.$pristine}" required placeholder="{{ 'imageTools.blades.setting-detail.placeholders.name' | translate }}"
-                                        class="form-control" ng-model="blade.currentEntity.value" name="value" type="text" />
+                    </fieldset>
+
+                    <fieldset ng-if="blade.multilanguage">
+                        <div class="form-group">
+                            <div class="column">
+                                <div class="form-group __info list">
+                                    <label class="form-label">{{ 'catalog.blades.property-dictionary.languages.english' | translate }}</label>
+                                    <div class="form-input">
+                                        <input ng-class="{'error': detailForm.enPropertyValue.$invalid && !detailForm.enPropertyValue.$pristine}" placeholder="{{ 'catalog.blades.property-dictionary.placeholders.value' | translate }}"
+                                            class="form-control" ng-model="enProperty.value" name="enPropertyValue" type="text" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="column">
-                            <div class="form-group __info list">
-                                <label class="form-label">{{ 'catalog.blades.property-dictionary.languages.russian' | translate }}</label>
-                                <div class="form-input">
-                                    <input ng-class="{'error': detailForm.name.$invalid && !detailForm.name.$pristine}" required placeholder="{{ 'imageTools.blades.setting-detail.placeholders.name' | translate }}"
-                                        class="form-control" ng-model="blade.currentEntity.value" name="value" type="text" />
+
+                        <div class="form-group">
+                            <div class="column">
+                                <div class="form-group __info list">
+                                    <label class="form-label">{{ 'catalog.blades.property-dictionary.languages.german' | translate }}</label>
+                                    <div class="form-input">
+                                        <input ng-class="{'error': detailForm.dePropertyValue.$invalid && !detailForm.dePropertyValue.$pristine}" placeholder="{{ 'catalog.blades.property-dictionary.placeholders.value' | translate }}"
+                                            class="form-control" ng-model="deProperty.value" name="dePropertyValue" type="text" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <div class="column">
+                                <div class="form-group __info list">
+                                    <label class="form-label">{{ 'catalog.blades.property-dictionary.languages.russian' | translate }}</label>
+                                    <div class="form-input">
+                                        <input ng-class="{'error': detailForm.ruPropertyValue.$invalid && !detailForm.ruPropertyValue.$pristine}" placeholder="{{ 'catalog.blades.property-dictionary.placeholders.value' | translate }}"
+                                            class="form-control" ng-model="ruProperty.value" name="ruPropertyValue" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                 </fieldset>
             </form>
         </div>

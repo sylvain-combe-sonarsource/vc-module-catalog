@@ -4,7 +4,6 @@ angular.module('virtoCommerce.catalogModule')
             var blade = $scope.blade;
             blade.headIcon = 'fa-book';
             $scope.blade = blade;
-            // var properties = pb.parentBlade.currentEntity.properties; 
 
             blade.refresh = function (parentRefresh) {
                 blade.isLoading = false;
@@ -20,6 +19,10 @@ angular.module('virtoCommerce.catalogModule')
                     blade.parentBlade.refresh();
                 }
             };
+
+            $scope.groupedValues = _.map(_.groupBy(blade.property.dictionaryValues, 'alias'), function (values, key) {
+                return { alias: key, values: values };
+            });
 
             // Search Criteria
             function getSearchCriteria() {
@@ -51,12 +54,12 @@ angular.module('virtoCommerce.catalogModule')
             ];
 
             $scope.selectNode = function (listItem) {
-                blade.setSelectedId(listItem.id);
+                blade.setSelectedNode(listItem);
                 showDetailBlade({ currentEntityId: listItem.id });
             };
 
-            blade.setSelectedId = function (selectedNodeId) {
-                $scope.selectedNodeId = selectedNodeId;
+            blade.setSelectedNode = function (setSelectedNode) {
+                $scope.setSelectedNode = setSelectedNode;
             };
 
             function showDetailBlade(bladeData) {
@@ -65,7 +68,9 @@ angular.module('virtoCommerce.catalogModule')
                     title : 'catalog.blades.property-dictionary.labels.value-edit',
                     controller: 'virtoCommerce.catalogModule.propertyDictionaryDetailsController',
                     template: 'Modules/$(VirtoCommerce.Catalog)/Scripts/blades/property-dictionary-details.tpl.html',
-                    currentEntity: blade.property.dictionaryValues.find(x=>x.id == $scope.selectedNodeId)
+                    currentEntity: blade.property.dictionaryValues.filter(x=>x.alias == $scope.setSelectedNode.alias),
+                    multilanguage: blade.property.multilanguage,
+                    alias: $scope.setSelectedNode.alias
                 };
                 angular.extend(newBlade, bladeData);
                 bladeNavigationService.showBlade(newBlade, blade);

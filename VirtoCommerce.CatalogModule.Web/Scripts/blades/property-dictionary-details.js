@@ -4,6 +4,11 @@ angular.module('virtoCommerce.catalogModule')
             var blade = $scope.blade;
             blade.headIcon = 'fa-book';
             $scope.blade = blade;
+            $scope.singleLanguageValue = !blade.multilanguage ? null : "";
+
+            $scope.enProperty = blade.currentEntity.find(x=>x.languageCode == "en-US") || { alias: blade.alias, id: "", languageCode: "en-US", propertyId: blade.parentBlade.parentBlade.currentEntityId, value: ""};
+            $scope.deProperty = blade.currentEntity.find(x=>x.languageCode == "de-DE") || { alias: blade.alias, id: "", languageCode: "de-DE", propertyId: blade.parentBlade.parentBlade.currentEntityId, value: ""};
+            $scope.ruProperty = blade.currentEntity.find(x=>x.languageCode == "ru-RU") || { alias: blade.alias, id: "", languageCode: "ru-RU", propertyId: blade.parentBlade.parentBlade.currentEntityId, value: ""};
 
             blade.refresh = function (parentRefresh) {
                 blade.isLoading = false;
