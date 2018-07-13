@@ -253,6 +253,7 @@
           "current-values": "Current values",
           "value": "Value",
           "alias": "Alias",
+          "alias-description": "The property values alias (system name)",
           "value-edit": "Dictionary value edit",
           "language-edit": "Edit values",
           "language-add": "New values"

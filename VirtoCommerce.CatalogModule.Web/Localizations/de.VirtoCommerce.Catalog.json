@@ -214,6 +214,7 @@
           "current-values": "Aktuelle Werte",
           "value": "Wert",
           "alias": "Alias",
+          "alias-description": "Der Eigenschaftswertalias (systemname)",
           "value-edit": "Bearbeiten des wörterbuchwerts",
           "language-edit": "Bearbeiten von Werten",
           "language-add": "Neue Werte"
@@ -641,3 +642,4 @@
       }
     }
   }
+}
