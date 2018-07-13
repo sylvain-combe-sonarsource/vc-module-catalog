@@ -247,12 +247,13 @@
       },
       "property-dictionary": {
         "title": "{{name}} dictionary",
-        "subtitle": "Manage dictionary",
+        "subtitle": "Manage dictionary values",
         "labels": {
           "new-value": "New value",
           "current-values": "Current values",
           "value": "Value",
           "alias": "Alias",
+          "value-edit": "Dictionary value edit",
           "language-edit": "Edit values",
           "language-add": "New values"
         },
@@ -263,6 +264,12 @@
         "placeholders": {
           "value": "Enter value",
           "alias": "Enter an alias"
+        },
+        "languages": {
+          "english": "English",
+          "german": "German",
+          "italian": "Italian",
+          "russian": "Russian"
         }
       },
       "item-detail": {

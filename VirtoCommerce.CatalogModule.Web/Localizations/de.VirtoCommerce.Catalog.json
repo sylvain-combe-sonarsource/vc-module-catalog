@@ -208,11 +208,13 @@
       },
       "property-dictionary": {
         "title": "{{name}} Wörterbuch",
-        "subtitle": "Wörterbuch verwalten",
+        "subtitle": "Wörterbuch verwalten wertes",
         "labels": {
           "new-value": "Neuer Wert",
           "current-values": "Aktuelle Werte",
           "value": "Wert",
+          "alias": "Alias",
+          "value-edit": "Bearbeiten des wörterbuchwerts",
           "language-edit": "Bearbeiten von Werten",
           "language-add": "Neue Werte"
         },
@@ -222,6 +224,12 @@
         },
         "placeholders": {
           "value": "Wert eingeben"
+        },
+        "languages": {
+          "english": "Englisch",
+          "german": "Deutsche",
+          "italian": "Italienisch",
+          "russian": "Russisch"
         }
       },
       "item-detail": {

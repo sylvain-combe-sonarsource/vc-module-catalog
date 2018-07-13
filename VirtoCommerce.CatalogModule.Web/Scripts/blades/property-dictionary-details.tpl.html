@@ -1,0 +1,34 @@
+<div class="blade-content">
+    <div class="blade-inner">
+        <div class="inner-block clearfix">
+            <form name="detailForm">
+                <fieldset ng-init="setForm(detailForm)">
+                    <div class="form-group">
+                        <div class="column">
+                            <div class="form-group __info list">
+                                <label class="form-label">{{ 'imageTools.blades.setting-detail.labels.name' | translate }}</label>
+                                <div class="form-input">
+                                    <input ng-class="{'error': detailForm.name.$invalid && !detailForm.name.$pristine}" required placeholder="{{ 'imageTools.blades.setting-detail.placeholders.name' | translate }}"
+                                        class="form-control" ng-model="blade.currentEntity.alias" name="alias" type="text" />
+                                </div>
+                                <div class="list-descr">{{ 'imageTools.blades.setting-detail.discription.name' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="column">
+                            <div class="form-group __info list">
+                                <label class="form-label">{{ 'imageTools.blades.setting-detail.labels.name' | translate }}</label>
+                                <div class="form-input">
+                                    <input ng-class="{'error': detailForm.name.$invalid && !detailForm.name.$pristine}" required placeholder="{{ 'imageTools.blades.setting-detail.placeholders.name' | translate }}"
+                                        class="form-control" ng-model="blade.currentEntity.value" name="value" type="text" />
+                                </div>
+                                <div class="list-descr">{{ 'imageTools.blades.setting-detail.discription.name' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
