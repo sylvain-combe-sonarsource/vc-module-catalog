@@ -175,7 +175,8 @@ namespace VirtoCommerce.CatalogModule.Data.Services
 
             foreach (var entity in entities)
             {
-                ItemCacheRegion.ExpireEntity(entity);
+                //ItemCacheRegion.ExpireEntity(entity);
+                _platformMemoryCache.RemoveByPattern(entity.Id);
             }
         }
 
