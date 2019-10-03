@@ -22,7 +22,6 @@ angular.module('virtoCommerce.catalogModule')
             _.each(blade.currentEntities,
                 function (prop) {
                     prop.isChanged = false;
-                    prop.group = 'All properties';
                 });
 
             $scope.resetFilter();
@@ -33,6 +32,7 @@ angular.module('virtoCommerce.catalogModule')
             _.each(blade.currentEntities,
                 function(prop) {
                     prop.isSelected = true;
+                    prop.group = 'All properties';
                 });
         };
 
@@ -119,14 +119,16 @@ angular.module('virtoCommerce.catalogModule')
 				name: "catalog.commands.add-property", icon: 'fa fa-plus',
 				executeMethod: function () {
 					if (blade.entityType == "product") {
-						editUnmanageable({
-							isNew: true,
-							title: 'catalog.blades.item-property-detail.title-new',
-							origEntity: {
-								type: "Product",
-								valueType: "ShortText",
-								values: []
-							}
+                        editUnmanageable({
+                            isNew: true,
+                            title: 'catalog.blades.item-property-detail.title-new',
+                            origEntity: {
+                                type: "Product",
+                                valueType: "ShortText",
+                                values: [],
+                                isChanged: true,
+                                isSelected: true
+                            }
 						});
 					} else {
 						$scope.editProperty({ isManageable: true });
