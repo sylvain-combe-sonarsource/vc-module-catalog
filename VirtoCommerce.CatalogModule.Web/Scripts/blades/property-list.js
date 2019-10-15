@@ -1,7 +1,8 @@
 angular.module('virtoCommerce.catalogModule')
-    .controller('virtoCommerce.catalogModule.propertyListController', ['$scope', 'virtoCommerce.catalogModule.properties', 'platformWebApp.bladeNavigationService', 'virtoCommerce.catalogModule.propDictItems', function ($scope, properties, bladeNavigationService, propDictItems) {
+    .controller('virtoCommerce.catalogModule.propertyListController', ['$scope', 'virtoCommerce.catalogModule.properties', 'platformWebApp.bladeNavigationService', 'virtoCommerce.catalogModule.propDictItems', '$localStorage', function ($scope, properties, bladeNavigationService, propDictItems, $localStorage) {
 		var blade = $scope.blade;
-		$scope.isValid = false;
+        $scope.isValid = false;
+        $scope.modifiedCount = 0;
 		blade.refresh = function (entity) {
 			if (entity) {
 				initialize(entity);
@@ -11,47 +12,40 @@ angular.module('virtoCommerce.catalogModule')
 			}
 		};
 
-		function initialize(entity) {
-			blade.title = entity.name;
-			blade.subtitle = 'catalog.blades.property-list.subtitle';
+        function initialize(entity) {
+            blade.title = entity.name;
+            blade.subtitle = 'catalog.blades.property-list.subtitle';
             blade.currentEntity = entity;
             blade.filtered = false;
 
             blade.currentEntities = angular.copy(entity.properties);
 
             _.each(blade.currentEntities,
-                function (prop) {
+                function(prop) {
                     prop.isChanged = false;
+                    prop.group = 'All properties';
                 });
 
             $scope.resetFilter();
-        };
+        }
 
         $scope.resetFilter = function () {
-            blade.filtered = false;
-            _.each(blade.currentEntities,
-                function(prop) {
-                    prop.isSelected = true;
-                    prop.group = 'All properties';
-                });
+                blade.filtered = false;
+                _.each(blade.currentEntities,
+                    function (prop) {
+                        prop.isSelected = true;
+                    });
         };
 
-        $scope.HasChangedProperties = function(properties) {
+        $scope.HasChangedProperties = function (properties) {
             return _.filter(properties,
-                function(prop) {
+                function (prop) {
                     return prop.isChanged;
                 }).length;
         };
 
-        $scope.selectedCount = function(properties) {
-            return _.filter(properties,
-                function(item) {
-                    return item.isSelected;
-                }).length;
-        };
-
 		$scope.saveChanges = function () {
-			blade.currentEntity.properties = blade.currentEntities;
+            blade.currentEntity.properties = blade.currentEntities;
 			$scope.bladeClose();
 		};
 
@@ -108,7 +102,7 @@ angular.module('virtoCommerce.catalogModule')
 			formScope = form;
 		}
 
-		$scope.$watch("blade.currentEntities", function () {
+        $scope.$watch("blade.currentEntities", function () {
             $scope.isValid = formScope && formScope.$valid && $scope.HasChangedProperties(blade.currentEntities);
 		}, true);
 
@@ -148,12 +142,7 @@ angular.module('virtoCommerce.catalogModule')
                         controller: 'virtoCommerce.catalogModule.propertySelectorController',
                         template: 'Modules/$(VirtoCommerce.Catalog)/Scripts/blades/property-selector.tpl.html',
                         onSelected: function (includedProperties) {
-                            blade.includedProperties = includedProperties;
-                            blade.propertySelected = includedProperties.length;
-
-                            if (blade.includedProperties.length) {
-                                blade.filtered = true;
-                            }
+                            blade.filtered = true;
 
                             _.each(blade.currentEntities,
                                 function (property) {
@@ -163,8 +152,6 @@ angular.module('virtoCommerce.catalogModule')
                                         });
                                     property.isSelected = foundProperty !== undefined ? true : false;
                                 });
-
-                            blade.isPropertiesSelected = true;
                         }
                     };
                     bladeNavigationService.showBlade(newBlade, blade);
