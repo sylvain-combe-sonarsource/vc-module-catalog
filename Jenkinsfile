@@ -1,2 +1,2 @@
 #!groovy
-virtoModuleV3 {}
+rsModule {}
