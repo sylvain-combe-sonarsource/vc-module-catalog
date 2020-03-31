@@ -10,13 +10,14 @@ using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.CatalogModule.Core.Model.Search;
 using VirtoCommerce.CatalogModule.Core.Search;
 using VirtoCommerce.CatalogModule.Core.Services;
-using VirtoCommerce.CatalogModule.Web.Authorization;
+using VirtoCommerce.CatalogModule.Data.Authorization;
 using VirtoCommerce.CoreModule.Core.Seo;
 using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.CatalogModule.Web.Controllers.Api
 {
     [Route("api/catalog/products")]
+    [Authorize]
     public class CatalogModuleProductsController : Controller
     {
         private readonly IItemService _itemsService;
@@ -52,7 +53,7 @@ namespace VirtoCommerce.CatalogModule.Web.Controllers.Api
         [Route("{id}")]
         public async Task<ActionResult<CatalogProduct>> GetProductById(string id, [FromQuery] string respGroup = null)
         {
-          
+
             var product = await _itemsService.GetByIdAsync(id, respGroup);
             if (product == null)
             {
@@ -206,28 +207,19 @@ namespace VirtoCommerce.CatalogModule.Web.Controllers.Api
                 return NotFound();
             }
 
-            // Generate new SKUs and remove SEO records for product and its variations
-            product.Code = _skuGenerator.GenerateSku(product);
-            product.SeoInfos.Clear();
+            var copyProduct = product.GetCopy() as CatalogProduct;
 
-            foreach (var variation in product.Variations)
+            // Generate new SKUs and remove SEO records for product and its variations
+            copyProduct.Code = _skuGenerator.GenerateSku(product);
+            copyProduct.SeoInfos.Clear();
+
+            foreach (var variation in copyProduct.Variations)
             {
                 variation.Code = _skuGenerator.GenerateSku(variation);
                 variation.SeoInfos.Clear();
-            }
+            }                  
 
-            // Clear ID for all related entities except properties
-            var allEntities = product.GetFlatObjectsListWithInterface<IEntity>();
-            foreach (var entity in allEntities)
-            {
-                var property = entity as Property;
-                if (property == null)
-                {
-                    entity.Id = null;
-                }
-            }
-
-            return Ok(product);
+            return Ok(copyProduct);
         }
 
         /// <summary>
@@ -298,7 +290,7 @@ namespace VirtoCommerce.CatalogModule.Web.Controllers.Api
         [HttpPost]
         [Route("associations/search")]
         public async Task<ActionResult<ProductAssociationSearchResult>> SearchProductAssociations([FromBody] ProductAssociationSearchCriteria criteria)
-        {       
+        {
             var searchResult = await _productAssociationSearchService.SearchProductAssociationsAsync(criteria);
             var result = new ProductAssociationSearchResult
             {
