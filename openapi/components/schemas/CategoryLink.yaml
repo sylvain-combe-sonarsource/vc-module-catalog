@@ -1,0 +1,26 @@
+type: object
+properties:
+  entryId:
+    type: string
+    description: Entry identifier which this link belongs to
+    nullable: true
+    readOnly: true
+  listEntryId:
+    type: string
+    nullable: true
+  listEntryType:
+    type: string
+    description: 'Gets or sets the type of the list entry. E.g. "product", "category"'
+    nullable: true
+  priority:
+    type: integer
+    description: Product order position in virtual catalog
+    format: int32
+  catalogId:
+    type: string
+    nullable: true
+  categoryId:
+    type: string
+    nullable: true
+  category:
+    $ref: .\Category.yaml

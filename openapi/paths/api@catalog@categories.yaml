@@ -1,0 +1,102 @@
+get:
+  tags:
+    - Catalog module
+  summary: Gets categories by ids
+  operationId: CatalogModuleCategories_GetCategoriesByIdsAsync
+  parameters:
+    - name: ids
+      in: query
+      description: Categories ids
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+        description: Categories ids
+        nullable: true
+    - name: respGroup
+      in: query
+      description: Response group.
+      schema:
+        type: string
+        description: Response group.
+        nullable: true
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\Category.yaml
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\Category.yaml
+        text/json:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\Category.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []
+post:
+  tags:
+    - Catalog module
+  summary: Creates or updates the specified category.
+  description: 'If category.id is null, a new category is created. It''s updated otherwise'
+  operationId: CatalogModuleCategories_CreateOrUpdateCategory
+  requestBody:
+    description: The category.
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\Category.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\Category.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\Category.yaml
+  responses:
+    '200':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []
+delete:
+  tags:
+    - Catalog module
+  summary: Deletes the specified categories by id.
+  operationId: CatalogModuleCategories_DeleteCategory
+  parameters:
+    - name: ids
+      in: query
+      description: The categories ids.
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+        description: The categories ids.
+        nullable: true
+  responses:
+    '204':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

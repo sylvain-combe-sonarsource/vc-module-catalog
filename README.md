@@ -1,223 +1,250 @@
-# VirtoCommerce Catalog Module
-
-## Overview
-
-The Catalog module presents the ability to add items to your e-commerce store.  It can be electronics, groceries, digital content or anything else. Items can be grouped into categories and catalogs. The item grouping is individual depending on the stock size, item types, vendors, etc.
-
-The Catalog Module supports two types of catalogs - physical and virtual.
-
-### Common Catalogs
-
-A (common) catalog is defined as a list of items or services that a company showcases online. Physically the catalog is a collection of items, which can be grouped into categories. An item can be assigned to only one category or be direct child of a catalog without any category.  
-
- Each trademark or product line may have its own catalog of all the offerings in that category. Or when dealing with several suppliers, in this case each supplier may have its own catalog with offered items.
-
-![Fig. Catalog](docs/media/screen-catalogs.png)
-
-#### Scenarios
-
-[View Catalogs And Physical Items Details](/docs/view-catalogs-and-physical-items.md)
-
-[Add New Catalog](/docs/add-new-catalog.md)
-
-### Virtual Catalogs
-
-Virtual catalogs are created from one or more common catalogs. This kind of catalogs aggregates multiple base catalogs into a single catalog.
-For example, a Virtual catalog may be used to display seasonal goods that can be collected from multiple catalogs.
-
-A virtual catalog must have a unique name different from other virtual catalogs and common catalogs. Though virtual catalogs are composed of items and categories from common catalogs, items from a virtual catalog cannot be added to another virtual catalog.
-
-The major difference between a catalog and a virtual catalog is that the second one is just a view of items from common catalogs.
- Physically all items from a virtual catalog are located in common catalogs. This also means that if a modification is made to an item in the common catalog, the update will be reflected in all virtual catalogs instantly.
-
-![Fig. Virtual Catalog](docs/media/screen-virtual-catalog.png)
-
-#### Scenarios 
-
-[Add Virtual Catalog](/docs/add-virtual-catalog.md)
-
-### Categories
-
-A category is a container for other categories or items. Category in the catalog can have sub-categories.
-
-Categories allow building hierarchies and relationships between various items in the catalog. This helps customers to navigate on client side to the items they would like to purchase.
-
-Large catalogs containing many items might be reasonable to organize using parent-child relations.
-
-![Fig. Categories](docs/media/screen-categories.png)
-
-#### Scenarios
-
-[Manage Categories](/docs/manage-categories.md)
-
-### Items (Product)
-
-A product with its variations in the system is presented as a collection of products (variations).
-
-There are two types of products presented in the Catalog- physical products and digital products.
-
-The title (main) product has variative property set of values. All product variations have the parent-child relation with the title product. Thus, variation inherits property values of the title product (e.g. description, assets etc.) but can also override the values of those properties if they differ from the title product property values.
-
-To show such a product with variations on the storefront, the title product (main) is loaded with all the related products (variations). Property values of the title product are used for product description. SKU selector for such a product with variations is built using variations properties of the title product and its variations.
-So, an item concept in Virto Commerce is a generalization of Variation/SKU or Product. An item corresponds to item in the store that can be promoted and sold.
-
-![Fig. Product Variations](docs/media/screen-product-variations.png)
-
-User can manage simple item properties as well as complex information:
-
-1. Custom properties.
-1. SEO information.
-1. Associations (associated items).
-1. Assets.
-1. Images.
-1. Variations (SKUs).
-1. Inventory
-1. Prices.
-
-Inventory and prices management are integrated from other modules - “Virto Commerce Inventory” and “Virto Commerce Pricing” respectively.
-
-![Fig. Physical Item Details](docs/media/screen-physical-item-details.png)
-
-#### Scenarios
-
-[Manage Products](/docs/manage-physical-products.md)
-
-[Product Indexing](/docs/product-indexing.md)
-
-### Variations
-
-In case there is a need to add variations of the product, a relation should be implemented between the products as well as special type of variative properties definition added.
-
-Thus, a product with its variations in the system is presented as a collection of products (variations). The title (main) product is a parent variation and has all variation properties. And all other variations are related as children to the title product.
-
- Every product that has relation to the title product (variation) can inherit some property values of the title product (description, assets etc.) but can also override the values of those properties if they differ from the title product (variation) property values.
-
-To show such a product with variations on the storefront, the title product is loaded with all the related products (variations). Property values of the title product (variation) are used for the main product description.
-
-SKU selector for such a product with variations is built using variations properties of the title product and its variations.
-
-![Fig. Product variations](docs/media/screen-product-variations.png)
-
-#### Scenarios
-
-[View Product Variations](/docs/view-product-variations.md)
-
-[Manage Product Variations](/docs/manage-product-variations.md)
-
-### Properties
-
-Properties (or custom properties) are the additional characteristics for your catalog entities. They can be defined at different levels of item hierarchy:
-
-1. Catalog - value assigned in catalog level.
-1. Category - value assigned in category level and can be overwritten in child categories.
-1. Product - value assigned in item or variation level.
-
-All properties defined in parent hierarchy entities are available in (inherited by) item. E.g. every item inside catalog will have property “Brand” with value “Sony” once it was defined in parent catalog and was assigned such value there.
-
-Every property has its “Assign to” trait set to one of: “catalog”, “category”, “product” or “variation”. This defines at what level the property’s value can be set.
-
-![Fig. Properties](docs/media/screen-product-properties.png)
-
-#### Scenarios
-
-[View Properties](/docs/view-properties.md)
-
-[Manage Properties](/docs/manage-properties.md)
-
-### Linked Category
-
-Common category has the same meaning as the category in common catalogs. User can create common category and link products to it or create linked category in it.
-
-**Possible Operations**
-catalog CRUD:
-
-- properties
-
-category CRUD:
-
-- properties;
-- SEO.
-
-virtual catalog CRUD:
-
-- categories;
-- including categories from other (real) catalogs.
-
-Expandability points:
-
-- additional widgets in (virtual) catalog detail;
-- additional widgets in category detail;
-- additional widgets in item detail.
-
-## VirtoCommerce Search
-
-The solution uses Search as primary tool for customer interaction. The customers expect high-level relevance, multiple-languages and near-instantaneous responses.
-
-### Benefits
-
-1. Document based full text search and text analysis for Products, Categories and Members;
-
-1. Search by keyword, filters, aggregations and geo-search;
-
-1. Supports multiple search engines: Elastic Search, Elastic Cloud, Azure Search and Lucence;
-
-1. Functionality, which implements the inherent complexity of information retrieval is exposed through REST API or .NET SDK;
-
-1. The supported document types (Product, Category, Member) can be easily extended by third party team.
-
-### Architecture Overview
-
-The Architecture is focused to isolate the search engine from documents and provide abilities to add new types of documents.
-
-[Search Engine Architecture Details](/docs/search-engine-architecture-details.md)
-
-[Catalog Search](/docs/catalog-search.md)
-
-### Elastic Search
-
-https://github.com/VirtoCommerce/vc-module-elastic-search
-
-### Azure Search
-
-https://github.com/VirtoCommerce/vc-module-azure-search
-
-### Lucene Search
-
-https://github.com/VirtoCommerce/vc-module-lucene-search
-
-Lucene Search Module is recommended for development purposes only, not for production usage
-
-### Search Provider Tests
-
-https://github.com/VirtoCommerce/vc-module-core/blob/dev/VirtoCommerce.CoreModule.Search.Tests/SearchProviderTests.cs
-
-## Search Index
-
-VirtoCommerce platform provides a unified solution for indexing and searching of different types of objects. The search engine should not operate directly with the database, especially when full text search, aggregations, partial search are needed. For this reason, from the architecture point of view, it was decided to isolate the search engine from the documents that should be searched.
-
-The Search Index is used to improve the search performance and speed.
-
-The indexing process starts automatically based on a pre-defined schedule. But at the same time, VirtoCommerce Platform provides the possibility to start the indexing process manually if needed.
-
-[Manage Search Index](/docs/manage-search-index.md)
-
-[Glossary](/docs/glossary.md)
-
-## Data Model Diagram
-
-![Fig. Data Model](docs/media/entity-data-model.png)
-
-## License
-
-Copyright (c) Virto Solutions LTD.  All rights reserved.
-
-Licensed under the Virto Commerce Open Software License (the "License"); you
-may not use this file except in compliance with the License. You may
-obtain a copy of the License at
-
-http://virtocommerce.com/opensourcelicense
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-implied.
+# VirtoCommerce.Catalog OpenAPI Definition
+
+## Working on your OpenAPI Definition
+
+### Install
+
+1. Install [Node JS](https://nodejs.org/).
+2. Clone this repo and run `npm install` in the repo root.
+
+### Usage
+
+#### `npm start`
+Starts the reference docs preview server.
+
+#### `npm run build`
+Bundles the definition to the dist folder.
+
+#### `npm test`
+Validates the definition.
+
+## Contribution Guide
+
+Below is a sample contribution guide. The tools 
+in the repository don't restrict you to any 
+specific structure. Adjust the contribution guide
+to match your own structure. However, if you 
+don't have a structure in mind, this is a
+good place to start.
+
+Update this contribution guide if you
+adjust the file/folder organization.
+
+The `.redocly.yaml` controls settings for various
+tools including the lint tool and the reference
+docs engine.  Open it to find examples and 
+[read the docs](https://docs.redoc.ly/cli/configuration/)
+for more information.
+
+
+### Schemas
+
+#### Adding Schemas
+
+1. Navigate to the `openapi/components/schemas` folder.
+2. Add a file named as you wish to name the schema.
+3. Define the schema.
+4. Refer to the schema using the `$ref` (see example below).
+
+##### Example Schema
+This is a very simple schema example:
+```yaml
+type: string
+description: The resource ID. Defaults to UUID v4
+maxLength: 50
+example: 4f6cf35x-2c4y-483z-a0a9-158621f77a21
+```
+This is a more complex schema example:
+```yaml
+type: object
+properties:
+  id:
+    description: The customer identifier string
+    readOnly: true
+    allOf:
+      - $ref: ./ResourceId.yaml
+  websiteId:
+    description: The website's ID
+    allOf:
+      - $ref: ./ResourceId.yaml
+  paymentToken:
+    type: string
+    writeOnly: true
+    description: |
+      A write-only payment token; if supplied, it will be converted into a
+      payment instrument and be set as the `defaultPaymentInstrument`. The
+      value of this property will override the `defaultPaymentInstrument`
+      in the case that both are supplied. The token may only be used once
+      before it is expired.
+  defaultPaymentInstrument:
+    $ref: ./PaymentInstrument.yaml
+  createdTime:
+    description: The customer created time
+    allOf:
+      - $ref: ./ServerTimestamp.yaml
+  updatedTime:
+    description: The customer updated time
+    allOf:
+      - $ref: ./ServerTimestamp.yaml
+  tags:
+    description: A list of customer's tags
+    readOnly: true
+    type: array
+    items:
+      $ref: ./Tags/Tag.yaml
+  revision:
+    description: >
+      The number of times the customer data has been modified.
+
+      The revision is useful when analyzing webhook data to determine if the
+      change takes precedence over the current representation.
+    type: integer
+    readOnly: true
+  _links:
+    type: array
+    description: The links related to resource
+    readOnly: true
+    minItems: 3
+    items:
+      anyOf:
+        - $ref: ./Links/SelfLink.yaml
+        - $ref: ./Links/NotesLink.yaml
+        - $ref: ./Links/DefaultPaymentInstrumentLink.yaml
+        - $ref: ./Links/LeadSourceLink.yaml
+        - $ref: ./Links/WebsiteLink.yaml
+  _embedded:
+    type: array
+    description: >-
+      Any embedded objects available that are requested by the `expand`
+      querystring parameter.
+    readOnly: true
+    minItems: 1
+    items:
+      anyOf:
+        - $ref: ./Embeds/LeadSourceEmbed.yaml
+
+```
+
+##### Using the `$ref`
+
+Notice in the complex example above the schema definition itself has `$ref` links to other schemas defined.
+
+Here is a small excerpt with an example:
+
+```yaml
+defaultPaymentInstrument:
+  $ref: ./PaymentInstrument.yaml
+```
+
+The value of the `$ref` is the path to the other schema definition.
+
+You may use `$ref`s to compose schema from other existing schema to avoid duplication.
+
+You will use `$ref`s to reference schema from your path definitions.
+
+#### Editing Schemas
+
+1. Navigate to the `openapi/components/schemas` folder.
+2. Open the file you wish to edit.
+3. Edit.
+
+### Paths
+
+#### Adding a Path
+
+1. Navigate to the `openapi/paths` folder.
+2. Add a new YAML file named like your URL endpoint except replacing `/` with `@` and putting path parameters into curly braces like `{example}`.
+3. Add the path and a ref to it inside of your `openapi.yaml` file inside of the `openapi` folder.
+
+Example addition to the `openapi.yaml` file:
+```yaml
+'/customers/{id}':
+  $ref: './paths/customers@{id}.yaml'
+```
+
+Here is an example of a YAML file named `customers@{id}.yaml` in the `paths` folder:
+
+```yaml
+get:
+  tags:
+    - Customers
+  summary: Retrieve a list of customers
+  operationId: GetCustomerCollection
+  description: |
+    You can have a markdown description here.
+  parameters:
+    - $ref: ../components/parameters/collectionLimit.yaml
+    - $ref: ../components/parameters/collectionOffset.yaml
+    - $ref: ../components/parameters/collectionFilter.yaml
+    - $ref: ../components/parameters/collectionQuery.yaml
+    - $ref: ../components/parameters/collectionExpand.yaml
+    - $ref: ../components/parameters/collectionFields.yaml
+  responses:
+    '200':
+      description: A list of Customers was retrieved successfully
+      headers:
+        Rate-Limit-Limit:
+          $ref: ../components/headers/Rate-Limit-Limit.yaml
+        Rate-Limit-Remaining:
+          $ref: ../components/headers/Rate-Limit-Remaining.yaml
+        Rate-Limit-Reset:
+          $ref: ../components/headers/Rate-Limit-Reset.yaml
+        Pagination-Total:
+          $ref: ../components/headers/Pagination-Total.yaml
+        Pagination-Limit:
+          $ref: ../components/headers/Pagination-Limit.yaml
+        Pagination-Offset:
+          $ref: ../components/headers/Pagination-Offset.yaml
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Customer.yaml
+        text/csv:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Customer.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+  x-code-samples:
+    - lang: PHP
+      source:
+        $ref: ../code_samples/PHP/customers/get.php
+post:
+  tags:
+    - Customers
+  summary: Create a customer (without an ID)
+  operationId: PostCustomer
+  description: Another markdown description here.
+  requestBody:
+    $ref: ../components/requestBodies/Customer.yaml
+  responses:
+    '201':
+      $ref: ../components/responses/Customer.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '409':
+      $ref: ../components/responses/Conflict.yaml
+    '422':
+      $ref: ../components/responses/InvalidDataError.yaml
+  x-code-samples:
+    - lang: PHP
+      source:
+        $ref: ../code_samples/PHP/customers/post.php
+```
+
+You'll see extensive usage of `$ref`s in this example to different types of components including schemas.
+
+You'll also notice `$ref`s to code samples.
+
+### Code samples
+
+1. Navigate to the `openapi/code_samples` folder.
+2. Navigate to the `<language>` (e.g. PHP) sub-folder.
+3. Navigate to the `path` folder, and add ref to the code sample.
+
+You can add languages by adding new folders at the appropriate path level.
+
+More details inside the `code_samples` folder README.

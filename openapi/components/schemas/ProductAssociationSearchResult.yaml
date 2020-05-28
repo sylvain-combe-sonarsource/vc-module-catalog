@@ -1,0 +1,10 @@
+type: object
+properties:
+  totalCount:
+    type: integer
+    format: int32
+  results:
+    type: array
+    items:
+      $ref: .\ProductAssociation.yaml
+    nullable: true

@@ -1,0 +1,26 @@
+get:
+  tags:
+    - Catalog module
+  summary: Gets the template for a new catalog.
+  description: Gets the template for a new common catalog
+  operationId: CatalogModuleCatalogs_GetNewCatalog
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\Catalog.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\Catalog.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\Catalog.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2:
+        - 'catalog:create'

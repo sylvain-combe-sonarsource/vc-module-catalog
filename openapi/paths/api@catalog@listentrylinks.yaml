@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Catalog module
+  summary: Creates links for categories or items to parent categories and catalogs.
+  operationId: CatalogModuleListEntry_CreateLinks
+  requestBody:
+    description: The links.
+    content:
+      application/json-patch+json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\CategoryLink.yaml
+          description: The links.
+          nullable: true
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\CategoryLink.yaml
+          description: The links.
+          nullable: true
+      text/json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\CategoryLink.yaml
+          description: The links.
+          nullable: true
+  responses:
+    '200':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

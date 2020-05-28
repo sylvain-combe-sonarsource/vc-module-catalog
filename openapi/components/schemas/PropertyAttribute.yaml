@@ -1,0 +1,31 @@
+type: object
+properties:
+  propertyId:
+    type: string
+    nullable: true
+  value:
+    type: string
+    nullable: true
+  name:
+    type: string
+    nullable: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

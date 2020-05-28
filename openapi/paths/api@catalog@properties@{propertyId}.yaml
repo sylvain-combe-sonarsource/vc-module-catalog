@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Catalog module
+  summary: Gets property metainformation by id.
+  operationId: CatalogModuleProperties_GetProperty
+  parameters:
+    - name: propertyId
+      in: path
+      description: The property id.
+      required: true
+      schema:
+        type: string
+        description: The property id.
+        nullable: true
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\Property.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\Property.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\Property.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

@@ -1,0 +1,13 @@
+type: object
+properties:
+  searchCriteria:
+    $ref: .\CatalogListEntrySearchCriteria.yaml
+  categoryId:
+    type: string
+    description: The target category identifier for the link
+    nullable: true
+  catalogId:
+    type: string
+    description: The target catalog identifier for the link
+    nullable: true
+description: Information to search and create links to categories and items

@@ -1,0 +1,42 @@
+post:
+  tags:
+    - Catalog module
+  summary: Search property dictionary items
+  operationId: CatalogModulePropertyDictionaryItems_SearchPropertyDictionaryItems
+  requestBody:
+    description: The search criteria
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\PropertyDictionaryItemSearchCriteria.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\PropertyDictionaryItemSearchCriteria.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\PropertyDictionaryItemSearchCriteria.yaml
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\PropertyDictionaryItem.yaml
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\PropertyDictionaryItem.yaml
+        text/json:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\PropertyDictionaryItem.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

@@ -1,0 +1,19 @@
+type: object
+properties:
+  propertyId:
+    type: string
+    nullable: true
+  alias:
+    type: string
+    nullable: true
+  sortOrder:
+    type: integer
+    format: int32
+  localizedValues:
+    type: array
+    items:
+      $ref: .\PropertyDictionaryItemLocalizedValue.yaml
+    nullable: true
+  id:
+    type: string
+    nullable: true

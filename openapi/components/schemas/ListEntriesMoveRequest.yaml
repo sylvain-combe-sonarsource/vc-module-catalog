@@ -1,0 +1,18 @@
+type: object
+properties:
+  catalog:
+    type: string
+    nullable: true
+  catalogId:
+    type: string
+    nullable: true
+    readOnly: true
+  category:
+    type: string
+    nullable: true
+  listEntries:
+    type: array
+    items:
+      $ref: .\ListEntryBase.yaml
+    nullable: true
+description: Represents  move list entries command

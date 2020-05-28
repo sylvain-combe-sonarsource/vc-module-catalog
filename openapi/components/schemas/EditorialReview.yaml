@@ -1,0 +1,36 @@
+type: object
+properties:
+  content:
+    type: string
+    nullable: true
+  reviewType:
+    type: string
+    nullable: true
+  languageCode:
+    type: string
+    nullable: true
+  isInherited:
+    type: boolean
+  shouldSerializeAuditableProperties:
+    type: boolean
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

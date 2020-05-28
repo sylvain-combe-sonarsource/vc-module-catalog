@@ -1,0 +1,26 @@
+post:
+  tags:
+    - Catalog module
+  summary: Move categories or products to another location.
+  operationId: CatalogModuleListEntry_Move
+  requestBody:
+    description: Move operation request
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\ListEntriesMoveRequest.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\ListEntriesMoveRequest.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\ListEntriesMoveRequest.yaml
+  responses:
+    '204':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

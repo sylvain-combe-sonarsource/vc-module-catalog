@@ -1,0 +1,34 @@
+get:
+  tags:
+    - Catalog module
+  summary: Gets the template for a new product (outside of category).
+  description: Use when need to create item belonging to catalog directly.
+  operationId: CatalogModuleProducts_GetNewProductByCatalog
+  parameters:
+    - name: catalogId
+      in: path
+      description: The catalog id.
+      required: true
+      schema:
+        type: string
+        description: The catalog id.
+        nullable: true
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

@@ -1,0 +1,8 @@
+type: object
+properties:
+  language:
+    type: string
+    nullable: true
+  label:
+    type: string
+    nullable: true

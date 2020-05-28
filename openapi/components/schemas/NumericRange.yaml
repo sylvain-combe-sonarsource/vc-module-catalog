@@ -1,0 +1,14 @@
+type: object
+properties:
+  lower:
+    type: number
+    format: double
+    nullable: true
+  upper:
+    type: number
+    format: double
+    nullable: true
+  includeLower:
+    type: boolean
+  includeUpper:
+    type: boolean

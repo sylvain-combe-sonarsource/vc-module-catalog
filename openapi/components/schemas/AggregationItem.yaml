@@ -1,0 +1,27 @@
+type: object
+properties:
+  value:
+    type: object
+    description: Gets or sets the aggregation item value
+    nullable: true
+  count:
+    type: integer
+    description: Gets or sets the aggregation item count
+    format: int32
+  isApplied:
+    type: boolean
+    description: Gets or sets the flag for aggregation item is applied
+  labels:
+    type: array
+    items:
+      $ref: .\AggregationLabel.yaml
+    description: Gets or sets the collection of the aggregation item labels
+    nullable: true
+  requestedLowerBound:
+    type: string
+    description: Gets or sets the request lower bound for range aggregation value
+    nullable: true
+  requestedUpperBound:
+    type: string
+    description: Gets or sets the request lower bound for range aggregation value
+    nullable: true

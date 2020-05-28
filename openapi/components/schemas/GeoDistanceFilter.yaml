@@ -1,0 +1,10 @@
+type: object
+properties:
+  fieldName:
+    type: string
+    nullable: true
+  location:
+    $ref: .\GeoPoint.yaml
+  distance:
+    type: number
+    format: double

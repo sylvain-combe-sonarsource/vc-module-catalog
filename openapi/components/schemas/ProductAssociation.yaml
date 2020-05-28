@@ -1,0 +1,53 @@
+type: object
+properties:
+  type:
+    type: string
+    description: 'Association type (Accessories, Up-Sales, Cross-Sales, Related etc)'
+    nullable: true
+  priority:
+    type: integer
+    format: int32
+  quantity:
+    type: integer
+    format: int32
+    nullable: true
+  itemId:
+    type: string
+    description: Is a primary key of associating object
+    nullable: true
+  associatedObjectId:
+    type: string
+    description: "Each link element can have an associated object like Product, Category, etc.\r\nIs a primary key of associated object"
+    nullable: true
+  associatedObjectType:
+    type: string
+    description: 'Associated object type : ''product'', ''category'' etc'
+    nullable: true
+  outerId:
+    type: string
+    description: ''
+    nullable: true
+  associatedObjectName:
+    type: string
+    description: Display name for associated object
+    nullable: true
+    readOnly: true
+  associatedObjectImg:
+    type: string
+    description: Associated object image URL
+    nullable: true
+    readOnly: true
+  tags:
+    type: array
+    items:
+      type: string
+    nullable: true
+  imgSrc:
+    type: string
+    nullable: true
+    readOnly: true
+  images:
+    type: array
+    items:
+      $ref: .\Image.yaml
+    nullable: true

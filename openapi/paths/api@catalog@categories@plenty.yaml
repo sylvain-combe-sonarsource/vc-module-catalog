@@ -1,0 +1,62 @@
+post:
+  tags:
+    - Catalog module
+  summary: Get categories by plenty ids
+  operationId: CatalogModuleCategories_GetCategoriesByPlentyIds
+  parameters:
+    - name: respGroup
+      in: query
+      description: Response group
+      schema:
+        type: string
+        description: Response group
+        nullable: true
+  requestBody:
+    description: Categories ids
+    content:
+      application/json-patch+json:
+        schema:
+          type: array
+          items:
+            type: string
+          description: Categories ids
+          nullable: true
+      application/json:
+        schema:
+          type: array
+          items:
+            type: string
+          description: Categories ids
+          nullable: true
+      text/json:
+        schema:
+          type: array
+          items:
+            type: string
+          description: Categories ids
+          nullable: true
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\Category.yaml
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\Category.yaml
+        text/json:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\Category.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

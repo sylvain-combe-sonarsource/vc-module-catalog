@@ -1,0 +1,47 @@
+type: object
+properties:
+  catalogIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+  responseGroup:
+    type: string
+    nullable: true
+  objectType:
+    type: string
+    nullable: true
+  objectTypes:
+    type: array
+    items:
+      type: string
+    nullable: true
+  objectIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+  keyword:
+    type: string
+    nullable: true
+  searchPhrase:
+    type: string
+    nullable: true
+  languageCode:
+    type: string
+    nullable: true
+  sort:
+    type: string
+    nullable: true
+  sortInfos:
+    type: array
+    items:
+      $ref: .\SortInfo.yaml
+    nullable: true
+    readOnly: true
+  skip:
+    type: integer
+    format: int32
+  take:
+    type: integer
+    format: int32

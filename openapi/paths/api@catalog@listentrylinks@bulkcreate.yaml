@@ -1,0 +1,26 @@
+post:
+  tags:
+    - Catalog module
+  summary: Bulk create links to categories and items
+  operationId: CatalogModuleListEntry_BulkCreateLinks
+  requestBody:
+    description: ''
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\BulkLinkCreationRequest.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\BulkLinkCreationRequest.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\BulkLinkCreationRequest.yaml
+  responses:
+    '200':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

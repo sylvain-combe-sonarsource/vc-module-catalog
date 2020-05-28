@@ -1,0 +1,7 @@
+type: object
+properties:
+  sortColumn:
+    type: string
+    nullable: true
+  sortDirection:
+    $ref: .\SortDirection.yaml

@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Catalog module
+  summary: Gets the template for a new catalog property.
+  operationId: CatalogModuleProperties_GetNewCatalogProperty
+  parameters:
+    - name: catalogId
+      in: path
+      description: The catalog id.
+      required: true
+      schema:
+        type: string
+        description: The catalog id.
+        nullable: true
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\Property.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\Property.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\Property.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

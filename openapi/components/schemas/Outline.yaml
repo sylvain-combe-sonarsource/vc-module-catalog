@@ -1,0 +1,9 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      $ref: .\OutlineItem.yaml
+    description: Outline parts
+    nullable: true
+description: "Represents the path from the catalog to one of the child objects (product or category):\r\ncatalog/parent-category1/.../parent-categoryN/object"

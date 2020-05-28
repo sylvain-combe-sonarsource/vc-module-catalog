@@ -1,0 +1,56 @@
+post:
+  tags:
+    - Catalog module
+  summary: Creates or updates the specified property.
+  description: 'If property.IsNew == True, a new property is created. It''s updated otherwise'
+  operationId: CatalogModuleProperties_SaveProperty
+  requestBody:
+    description: The property.
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\Property.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\Property.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\Property.yaml
+  responses:
+    '204':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []
+delete:
+  tags:
+    - Catalog module
+  summary: Deletes property by id.
+  operationId: CatalogModuleProperties_DeleteProperty
+  parameters:
+    - name: id
+      in: query
+      description: The property id.
+      schema:
+        type: string
+        description: The property id.
+        nullable: true
+    - name: doDeleteValues
+      in: query
+      description: Flag indicating to remove property values from objects as well
+      schema:
+        type: boolean
+        description: Flag indicating to remove property values from objects as well
+        default: false
+  responses:
+    '204':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

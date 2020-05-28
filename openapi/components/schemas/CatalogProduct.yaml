@@ -1,0 +1,229 @@
+type: object
+properties:
+  code:
+    type: string
+    description: SKU code
+    nullable: true
+  manufacturerPartNumber:
+    type: string
+    nullable: true
+  gtin:
+    type: string
+    description: >-
+      Global Trade Item Number (GTIN). These identifiers include UPC (in North
+      America), EAN (in Europe), JAN (in Japan), and ISBN (for books).
+    nullable: true
+  name:
+    type: string
+    nullable: true
+  catalogId:
+    type: string
+    nullable: true
+  categoryId:
+    type: string
+    nullable: true
+  outline:
+    type: string
+    description: >-
+      Product outline in physical catalog (all parent categories ids
+      concatenated. E.g. (1/21/344))
+    nullable: true
+    readOnly: true
+  path:
+    type: string
+    description: >-
+      Product path in physical catalog (all parent categories names
+      concatenated. E.g. (parent1/parent2))
+    nullable: true
+    readOnly: true
+  titularItemId:
+    type: string
+    nullable: true
+    readOnly: true
+  mainProductId:
+    type: string
+    nullable: true
+  isBuyable:
+    type: boolean
+    nullable: true
+  isActive:
+    type: boolean
+    nullable: true
+  trackInventory:
+    type: boolean
+    nullable: true
+  indexingDate:
+    type: string
+    format: date-time
+    nullable: true
+  maxQuantity:
+    type: integer
+    format: int32
+    nullable: true
+  minQuantity:
+    type: integer
+    format: int32
+    nullable: true
+  productType:
+    type: string
+    description: 'Can be Physical, Digital or Subscription.'
+    nullable: true
+  packageType:
+    type: string
+    nullable: true
+  weightUnit:
+    type: string
+    nullable: true
+  weight:
+    type: number
+    format: double
+    nullable: true
+  measureUnit:
+    type: string
+    nullable: true
+  height:
+    type: number
+    format: double
+    nullable: true
+  length:
+    type: number
+    format: double
+    nullable: true
+  width:
+    type: number
+    format: double
+    nullable: true
+  enableReview:
+    type: boolean
+    nullable: true
+  maxNumberOfDownload:
+    type: integer
+    description: re-downloads limit
+    format: int32
+    nullable: true
+  downloadExpiration:
+    type: string
+    format: date-time
+    nullable: true
+  downloadType:
+    type: string
+    description: 'DownloadType: {Standard Product, Software, Music}'
+    nullable: true
+  hasUserAgreement:
+    type: boolean
+    nullable: true
+  shippingType:
+    type: string
+    nullable: true
+  taxType:
+    type: string
+    nullable: true
+  vendor:
+    type: string
+    nullable: true
+  startDate:
+    type: string
+    format: date-time
+  endDate:
+    type: string
+    format: date-time
+    nullable: true
+  priority:
+    type: integer
+    description: Product order position in catalog
+    format: int32
+  outerId:
+    type: string
+    nullable: true
+  properties:
+    type: array
+    items:
+      $ref: .\Property.yaml
+    nullable: true
+  propertyValues:
+    type: array
+    items:
+      $ref: .\PropertyValue.yaml
+    nullable: true
+    deprecated: true
+  imgSrc:
+    type: string
+    description: Gets the default image for the product.
+    nullable: true
+    readOnly: true
+  images:
+    type: array
+    items:
+      $ref: .\Image.yaml
+    nullable: true
+  assets:
+    type: array
+    items:
+      $ref: .\Asset.yaml
+    nullable: true
+  links:
+    type: array
+    items:
+      $ref: .\CategoryLink.yaml
+    nullable: true
+  variations:
+    type: array
+    items:
+      $ref: .\Variation.yaml
+    nullable: true
+  seoObjectType:
+    type: string
+    description: >-
+      Each descendant type should override this property to use other object
+      type for seo records
+    nullable: true
+    readOnly: true
+  seoInfos:
+    type: array
+    items:
+      $ref: .\SeoInfo.yaml
+    nullable: true
+  reviews:
+    type: array
+    items:
+      $ref: .\EditorialReview.yaml
+    nullable: true
+  associations:
+    type: array
+    items:
+      $ref: .\ProductAssociation.yaml
+    nullable: true
+  referencedAssociations:
+    type: array
+    items:
+      $ref: .\ProductAssociation.yaml
+    nullable: true
+  outlines:
+    type: array
+    items:
+      $ref: .\Outline.yaml
+    nullable: true
+  isInherited:
+    type: boolean
+    description: System flag used to mark that object was inherited from other
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

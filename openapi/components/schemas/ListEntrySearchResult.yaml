@@ -1,0 +1,17 @@
+type: object
+properties:
+  listEntries:
+    type: array
+    items:
+      $ref: .\ListEntryBase.yaml
+    description: Gets or sets the list entries.
+    nullable: true
+    readOnly: true
+  totalCount:
+    type: integer
+    format: int32
+  results:
+    type: array
+    items:
+      $ref: .\ListEntryBase.yaml
+    nullable: true

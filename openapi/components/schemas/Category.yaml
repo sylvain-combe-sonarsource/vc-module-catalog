@@ -1,0 +1,105 @@
+type: object
+properties:
+  catalogId:
+    type: string
+    nullable: true
+  parentId:
+    type: string
+    nullable: true
+  code:
+    type: string
+    nullable: true
+  name:
+    type: string
+    nullable: true
+  outline:
+    type: string
+    description: >-
+      Category outline in physical catalog (all parent categories ids
+      concatenated. E.g. (1/21/344))
+    nullable: true
+    readOnly: true
+  path:
+    type: string
+    description: >-
+      Category path in physical catalog (all parent categories names
+      concatenated. E.g. (parent1/parent2))
+    nullable: true
+  isVirtual:
+    type: boolean
+  level:
+    type: integer
+    format: int32
+  packageType:
+    type: string
+    nullable: true
+  priority:
+    type: integer
+    format: int32
+  isActive:
+    type: boolean
+    nullable: true
+  outerId:
+    type: string
+    nullable: true
+  properties:
+    type: array
+    items:
+      $ref: .\Property.yaml
+    nullable: true
+  links:
+    type: array
+    items:
+      $ref: .\CategoryLink.yaml
+    nullable: true
+  taxType:
+    type: string
+    nullable: true
+  seoObjectType:
+    type: string
+    nullable: true
+    readOnly: true
+  seoInfos:
+    type: array
+    items:
+      $ref: .\SeoInfo.yaml
+    nullable: true
+  imgSrc:
+    type: string
+    description: Gets the default image
+    nullable: true
+    readOnly: true
+  images:
+    type: array
+    items:
+      $ref: .\Image.yaml
+    nullable: true
+  outlines:
+    type: array
+    items:
+      $ref: .\Outline.yaml
+    nullable: true
+  isInherited:
+    type: boolean
+    description: System flag used to mark that object was inherited from other
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

@@ -1,0 +1,99 @@
+type: object
+properties:
+  code:
+    type: string
+    nullable: true
+  vendorId:
+    type: string
+    description: Search by vendor
+    nullable: true
+  vendorIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+  productType:
+    type: string
+    description: Search product with specified type
+    nullable: true
+  productTypes:
+    type: array
+    items:
+      type: string
+    nullable: true
+  withHidden:
+    type: boolean
+  hideDirectLinkedCategories:
+    type: boolean
+  mainProductId:
+    type: string
+    description: Search within variations of specified main product
+    nullable: true
+  searchInChildren:
+    type: boolean
+    description: Search  in all children categories for specified catalog or categories
+  searchInVariations:
+    type: boolean
+    description: Also search in variations
+  onlyBuyable:
+    type: boolean
+    nullable: true
+  onlyWithTrackingInventory:
+    type: boolean
+    nullable: true
+  catalogId:
+    type: string
+    nullable: true
+  catalogIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+  categoryId:
+    type: string
+    nullable: true
+  categoryIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+  responseGroup:
+    type: string
+    nullable: true
+  objectType:
+    type: string
+    nullable: true
+  objectTypes:
+    type: array
+    items:
+      type: string
+    nullable: true
+  objectIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+  keyword:
+    type: string
+    nullable: true
+  searchPhrase:
+    type: string
+    nullable: true
+  languageCode:
+    type: string
+    nullable: true
+  sort:
+    type: string
+    nullable: true
+  sortInfos:
+    type: array
+    items:
+      $ref: .\SortInfo.yaml
+    nullable: true
+    readOnly: true
+  skip:
+    type: integer
+    format: int32
+  take:
+    type: integer
+    format: int32

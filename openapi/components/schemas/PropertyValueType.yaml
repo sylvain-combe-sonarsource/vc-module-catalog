@@ -1,0 +1,9 @@
+enum:
+  - ShortText
+  - LongText
+  - Number
+  - DateTime
+  - Boolean
+  - Integer
+  - GeoPoint
+type: string

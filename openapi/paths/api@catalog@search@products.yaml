@@ -1,0 +1,34 @@
+post:
+  tags:
+    - Catalog module
+  operationId: CatalogModuleIndexedSearch_SearchProducts
+  requestBody:
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\ProductIndexedSearchCriteria.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\ProductIndexedSearchCriteria.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\ProductIndexedSearchCriteria.yaml
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\ProductIndexedSearchResult.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\ProductIndexedSearchResult.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\ProductIndexedSearchResult.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

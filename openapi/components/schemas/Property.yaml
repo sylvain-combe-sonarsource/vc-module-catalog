@@ -1,0 +1,94 @@
+type: object
+properties:
+  isReadOnly:
+    type: boolean
+    description: Gets or sets a value indicating whether user can change property value.
+  isManageable:
+    type: boolean
+    description: >-
+      Gets or sets a value indicating whether user can change property metadata
+      or remove this property.
+    readOnly: true
+  isNew:
+    type: boolean
+    description: >-
+      Gets or sets a value indicating whether this instance is new. A new
+      property should be created on server site instead of trying to update it.
+  catalogId:
+    type: string
+    description: Gets or sets the catalog id that this product belongs to.
+    nullable: true
+  categoryId:
+    type: string
+    description: Gets or sets the category id that this product belongs to.
+    nullable: true
+  name:
+    type: string
+    nullable: true
+  required:
+    type: boolean
+  dictionary:
+    type: boolean
+  multivalue:
+    type: boolean
+  multilanguage:
+    type: boolean
+  hidden:
+    type: boolean
+    description: >-
+      Gets or sets a value indicating whether this
+      VirtoCommerce.CatalogModule.Core.Model.Property is hidden.
+  valueType:
+    $ref: .\PropertyValueType.yaml
+  type:
+    $ref: .\PropertyType.yaml
+  outerId:
+    type: string
+    nullable: true
+  values:
+    type: array
+    items:
+      $ref: .\PropertyValue.yaml
+    nullable: true
+  attributes:
+    type: array
+    items:
+      $ref: .\PropertyAttribute.yaml
+    nullable: true
+  displayNames:
+    type: array
+    items:
+      $ref: .\PropertyDisplayName.yaml
+    nullable: true
+  validationRules:
+    type: array
+    items:
+      $ref: .\PropertyValidationRule.yaml
+    nullable: true
+  validationRule:
+    $ref: .\PropertyValidationRule.yaml
+  isInherited:
+    type: boolean
+  shouldSerializeAuditableProperties:
+    type: boolean
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

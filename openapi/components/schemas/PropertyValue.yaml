@@ -1,0 +1,53 @@
+type: object
+properties:
+  propertyName:
+    type: string
+    nullable: true
+  propertyId:
+    type: string
+    nullable: true
+  languageCode:
+    type: string
+    nullable: true
+  alias:
+    type: string
+    nullable: true
+  valueType:
+    $ref: .\PropertyValueType.yaml
+  valueId:
+    type: string
+    nullable: true
+  value:
+    type: object
+    nullable: true
+  propertyMultivalue:
+    type: boolean
+    readOnly: true
+  outerId:
+    type: string
+    nullable: true
+  isInherited:
+    type: boolean
+  shouldSerializeAuditableProperties:
+    type: boolean
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

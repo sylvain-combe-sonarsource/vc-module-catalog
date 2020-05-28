@@ -1,0 +1,15 @@
+type: object
+properties:
+  totalCount:
+    type: integer
+    format: int64
+  items:
+    type: array
+    items:
+      $ref: .\Category.yaml
+    nullable: true
+  aggregations:
+    type: array
+    items:
+      $ref: .\Aggregation.yaml
+    nullable: true

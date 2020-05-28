@@ -1,0 +1,113 @@
+get:
+  tags:
+    - Catalog module
+  summary: Gets products by ids
+  operationId: CatalogModuleProducts_GetProductByIds
+  parameters:
+    - name: ids
+      in: query
+      description: Item ids
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+        description: Item ids
+        nullable: true
+    - name: respGroup
+      in: query
+      description: Response group.
+      schema:
+        type: string
+        description: Response group.
+        nullable: true
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\CatalogProduct.yaml
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\CatalogProduct.yaml
+        text/json:
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\CatalogProduct.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []
+post:
+  tags:
+    - Catalog module
+  summary: Create/Update the specified product.
+  operationId: CatalogModuleProducts_SaveProduct
+  requestBody:
+    description: The product.
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\CatalogProduct.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\CatalogProduct.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\CatalogProduct.yaml
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+    '204':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []
+delete:
+  tags:
+    - Catalog module
+  summary: Deletes the specified items by id.
+  operationId: CatalogModuleProducts_DeleteProduct
+  parameters:
+    - name: ids
+      in: query
+      description: The items ids.
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+        description: The items ids.
+        nullable: true
+  responses:
+    '200':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

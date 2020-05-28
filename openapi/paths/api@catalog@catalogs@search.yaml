@@ -1,0 +1,34 @@
+post:
+  tags:
+    - Catalog module
+  operationId: CatalogModuleCatalogs_SearchCatalogs
+  requestBody:
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\CatalogSearchCriteria.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\CatalogSearchCriteria.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\CatalogSearchCriteria.yaml
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\CatalogSearchResult.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\CatalogSearchResult.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\CatalogSearchResult.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

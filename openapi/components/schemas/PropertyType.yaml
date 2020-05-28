@@ -1,0 +1,6 @@
+enum:
+  - Product
+  - Variation
+  - Category
+  - Catalog
+type: string

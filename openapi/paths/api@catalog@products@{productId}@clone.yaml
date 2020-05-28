@@ -1,0 +1,30 @@
+get:
+  tags:
+    - Catalog module
+  operationId: CatalogModuleProducts_CloneProduct
+  parameters:
+    - name: productId
+      in: path
+      required: true
+      schema:
+        type: string
+        nullable: true
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

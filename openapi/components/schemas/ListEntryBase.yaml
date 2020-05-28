@@ -1,0 +1,73 @@
+type: object
+properties:
+  type:
+    type: string
+    description: 'Gets or sets the type. E.g. "product", "category"'
+    nullable: true
+  isActive:
+    type: boolean
+    description: Gets or sets a value indicating whether this entry is active.
+    nullable: true
+  imageUrl:
+    type: string
+    description: Gets or sets the image URL.
+    nullable: true
+  code:
+    type: string
+    description: Gets or sets the entry code.
+    nullable: true
+  name:
+    type: string
+    description: Gets or sets the name.
+    nullable: true
+  links:
+    type: array
+    items:
+      $ref: .\CategoryLink.yaml
+    description: Gets or sets the links.
+    nullable: true
+  outline:
+    type: array
+    items:
+      type: string
+    description: All entry parents ids
+    nullable: true
+  path:
+    type: array
+    items:
+      type: string
+    description: All entry parents names
+    nullable: true
+  catalogId:
+    type: string
+    description: Gets or sets the catalog id.
+    nullable: true
+  seoObjectType:
+    type: string
+    nullable: true
+  seoInfos:
+    type: array
+    items:
+      $ref: .\SeoInfo.yaml
+    nullable: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true
+description: Base class for all entries used in catalog categories browsing.

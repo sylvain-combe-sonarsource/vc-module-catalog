@@ -1,0 +1,42 @@
+type: object
+properties:
+  name:
+    type: string
+    nullable: true
+  isVirtual:
+    type: boolean
+  outerId:
+    type: string
+    nullable: true
+  defaultLanguage:
+    $ref: .\CatalogLanguage.yaml
+  languages:
+    type: array
+    items:
+      $ref: .\CatalogLanguage.yaml
+    nullable: true
+  properties:
+    type: array
+    items:
+      $ref: .\Property.yaml
+    nullable: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

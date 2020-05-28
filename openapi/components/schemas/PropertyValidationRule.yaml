@@ -1,0 +1,26 @@
+type: object
+properties:
+  isUnique:
+    type: boolean
+    description: Uniquie value flag constrain
+  charCountMin:
+    type: integer
+    description: Down chars count border or null if no defined
+    format: int32
+    nullable: true
+  charCountMax:
+    type: integer
+    description: Upper chars count border or null if no defined
+    format: int32
+    nullable: true
+  regExp:
+    type: string
+    description: Custom regular expression
+    nullable: true
+  propertyId:
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true
+description: Represents property validation rules definition

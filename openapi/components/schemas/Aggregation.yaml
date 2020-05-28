@@ -1,0 +1,22 @@
+type: object
+properties:
+  aggregationType:
+    type: string
+    description: Gets or sets the value of the aggregation type
+    nullable: true
+  field:
+    type: string
+    description: Gets or sets the value of the aggregation field
+    nullable: true
+  labels:
+    type: array
+    items:
+      $ref: .\AggregationLabel.yaml
+    description: Gets or sets the collection of the aggregation labels
+    nullable: true
+  items:
+    type: array
+    items:
+      $ref: .\AggregationItem.yaml
+    description: Gets or sets the collection of the aggregation items
+    nullable: true

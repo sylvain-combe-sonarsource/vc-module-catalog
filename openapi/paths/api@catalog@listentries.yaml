@@ -1,0 +1,36 @@
+post:
+  tags:
+    - Catalog module
+  summary: Searches for the items by complex criteria.
+  operationId: CatalogModuleListEntry_ListItemsSearchAsync
+  requestBody:
+    description: The search criteria.
+    content:
+      application/json-patch+json:
+        schema:
+          $ref: ..\components\schemas\CatalogListEntrySearchCriteria.yaml
+      application/json:
+        schema:
+          $ref: ..\components\schemas\CatalogListEntrySearchCriteria.yaml
+      text/json:
+        schema:
+          $ref: ..\components\schemas\CatalogListEntrySearchCriteria.yaml
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\ListEntrySearchResult.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\ListEntrySearchResult.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\ListEntrySearchResult.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

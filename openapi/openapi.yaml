@@ -1,0 +1,80 @@
+openapi: 3.0.1
+info:
+  title: VirtoCommerce.Catalog
+  version: v1
+paths:
+  '/api/catalog/products/associations/{productId}':
+    $ref: 'paths\api@catalog@products@associations@{productId}.yaml'
+  /api/catalog/products/associations:
+    $ref: paths\api@catalog@products@associations.yaml
+  /api/catalog/products/associations/search:
+    $ref: paths\api@catalog@products@associations@search.yaml
+  /api/catalog/catalogs/search:
+    $ref: paths\api@catalog@catalogs@search.yaml
+  '/api/catalog/catalogs/{id}':
+    $ref: 'paths\api@catalog@catalogs@{id}.yaml'
+  /api/catalog/catalogs/getnew:
+    $ref: paths\api@catalog@catalogs@getnew.yaml
+  /api/catalog/catalogs/getnewvirtual:
+    $ref: paths\api@catalog@catalogs@getnewvirtual.yaml
+  /api/catalog/catalogs:
+    $ref: paths\api@catalog@catalogs.yaml
+  '/api/catalog/categories/{id}':
+    $ref: 'paths\api@catalog@categories@{id}.yaml'
+  /api/catalog/categories:
+    $ref: paths\api@catalog@categories.yaml
+  /api/catalog/categories/plenty:
+    $ref: paths\api@catalog@categories@plenty.yaml
+  '/api/catalog/{catalogId}/categories/newcategory':
+    $ref: 'paths\api@catalog@{catalogId}@categories@newcategory.yaml'
+  /api/catalog/search/products:
+    $ref: paths\api@catalog@search@products.yaml
+  /api/catalog/search/categories:
+    $ref: paths\api@catalog@search@categories.yaml
+  /api/catalog/listentries:
+    $ref: paths\api@catalog@listentries.yaml
+  /api/catalog/listentrylinks:
+    $ref: paths\api@catalog@listentrylinks.yaml
+  /api/catalog/listentrylinks/bulkcreate:
+    $ref: paths\api@catalog@listentrylinks@bulkcreate.yaml
+  /api/catalog/listentrylinks/delete:
+    $ref: paths\api@catalog@listentrylinks@delete.yaml
+  /api/catalog/listentries/move:
+    $ref: paths\api@catalog@listentries@move.yaml
+  '/api/catalog/products/{id}':
+    $ref: 'paths\api@catalog@products@{id}.yaml'
+  /api/catalog/products:
+    $ref: paths\api@catalog@products.yaml
+  /api/catalog/products/plenty:
+    $ref: paths\api@catalog@products@plenty.yaml
+  '/api/catalog/{catalogId}/products/getnew':
+    $ref: 'paths\api@catalog@{catalogId}@products@getnew.yaml'
+  '/api/catalog/{catalogId}/categories/{categoryId}/products/getnew':
+    $ref: 'paths\api@catalog@{catalogId}@categories@{categoryId}@products@getnew.yaml'
+  '/api/catalog/products/{productId}/getnewvariation':
+    $ref: 'paths\api@catalog@products@{productId}@getnewvariation.yaml'
+  '/api/catalog/products/{productId}/clone':
+    $ref: 'paths\api@catalog@products@{productId}@clone.yaml'
+  /api/catalog/products/batch:
+    $ref: paths\api@catalog@products@batch.yaml
+  '/api/catalog/properties/{propertyId}':
+    $ref: 'paths\api@catalog@properties@{propertyId}.yaml'
+  '/api/catalog/{catalogId}/properties/getnew':
+    $ref: 'paths\api@catalog@{catalogId}@properties@getnew.yaml'
+  '/api/catalog/categories/{categoryId}/properties/getnew':
+    $ref: 'paths\api@catalog@categories@{categoryId}@properties@getnew.yaml'
+  /api/catalog/properties:
+    $ref: paths\api@catalog@properties.yaml
+  /api/catalog/dictionaryitems/search:
+    $ref: paths\api@catalog@dictionaryitems@search.yaml
+  /api/catalog/dictionaryitems:
+    $ref: paths\api@catalog@dictionaryitems.yaml
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 Resource Owner Password Grant flow
+      flows:
+        password:
+          tokenUrl: /connect/token
+          scopes: {}

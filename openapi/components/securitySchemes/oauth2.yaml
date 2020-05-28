@@ -1,0 +1,6 @@
+type: oauth2
+description: OAuth2 Resource Owner Password Grant flow
+flows:
+  password:
+    tokenUrl: /connect/token
+    scopes: {}

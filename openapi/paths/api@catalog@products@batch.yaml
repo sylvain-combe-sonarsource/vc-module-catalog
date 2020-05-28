@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Catalog module
+  summary: Create/Update the specified products.
+  operationId: CatalogModuleProducts_SaveProducts
+  requestBody:
+    description: The products.
+    content:
+      application/json-patch+json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+          description: The products.
+          nullable: true
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+          description: The products.
+          nullable: true
+      text/json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\CatalogProduct.yaml
+          description: The products.
+          nullable: true
+  responses:
+    '200':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []

@@ -1,0 +1,87 @@
+type: object
+properties:
+  objectType:
+    type: string
+    nullable: true
+  storeId:
+    type: string
+    nullable: true
+  catalogId:
+    type: string
+    nullable: true
+  outline:
+    type: string
+    description: 'CategoryId1/CategoryId2, no catalog should be included in the outline'
+    nullable: true
+  outlines:
+    type: array
+    items:
+      type: string
+    description: 'CategoryId1/CategoryId2, no catalog should be included in the outline'
+    nullable: true
+  terms:
+    type: array
+    items:
+      type: string
+    description: 'Term format: name:value1,value2'
+    nullable: true
+  userGroups:
+    type: array
+    items:
+      type: string
+    description: 'Assigned groups for current user. Data format: user_groups:value1,value2'
+    nullable: true
+  isFuzzySearch:
+    type: boolean
+    description: >-
+      Enable fuzzy search, i.e. allow to search color:white even if color:wihte
+      actually passed to criteria
+  rawQuery:
+    type: string
+    description: >-
+      Gets or sets the search provider specific raw search query; all other
+      search criteria will be ignored
+    nullable: true
+  includeFields:
+    type: array
+    items:
+      type: string
+    description: Allows to retrieve only a specific set of fields in the result hits
+    nullable: true
+  keyword:
+    type: string
+    nullable: true
+  responseGroup:
+    type: string
+    nullable: true
+  objectTypes:
+    type: array
+    items:
+      type: string
+    nullable: true
+  objectIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+  searchPhrase:
+    type: string
+    nullable: true
+  languageCode:
+    type: string
+    nullable: true
+  sort:
+    type: string
+    nullable: true
+  sortInfos:
+    type: array
+    items:
+      $ref: .\SortInfo.yaml
+    nullable: true
+    readOnly: true
+  skip:
+    type: integer
+    format: int32
+  take:
+    type: integer
+    format: int32

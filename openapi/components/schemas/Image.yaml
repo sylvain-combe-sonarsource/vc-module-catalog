@@ -1,0 +1,71 @@
+type: object
+properties:
+  sortOrder:
+    type: integer
+    format: int32
+  binaryData:
+    type: string
+    format: byte
+    nullable: true
+  relativeUrl:
+    type: string
+    nullable: true
+  url:
+    type: string
+    nullable: true
+  typeId:
+    type: string
+    description: Gets or sets the asset type identifier.
+    nullable: true
+  group:
+    type: string
+    description: Gets or sets the asset group name.
+    nullable: true
+  name:
+    type: string
+    description: Gets or sets the asset name.
+    nullable: true
+  outerId:
+    type: string
+    description: ''
+    nullable: true
+  languageCode:
+    type: string
+    description: Gets or sets the asset language.
+    nullable: true
+  isInherited:
+    type: boolean
+    description: System flag used to mark that object was inherited from other
+    readOnly: true
+  seoObjectType:
+    type: string
+    nullable: true
+    readOnly: true
+  seoInfos:
+    type: array
+    items:
+      $ref: .\SeoInfo.yaml
+    nullable: true
+  shouldSerializeAuditableProperties:
+    type: boolean
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

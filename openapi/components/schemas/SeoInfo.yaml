@@ -1,0 +1,65 @@
+type: object
+properties:
+  name:
+    type: string
+    nullable: true
+  semanticUrl:
+    type: string
+    description: Slug
+    nullable: true
+  pageTitle:
+    type: string
+    description: head title tag content
+    nullable: true
+  metaDescription:
+    type: string
+    description: <meta name="description" />
+    nullable: true
+  imageAltDescription:
+    type: string
+    nullable: true
+  metaKeywords:
+    type: string
+    description: <meta name="keywords" />
+    nullable: true
+  storeId:
+    type: string
+    description: Tenant StoreId which SEO defined
+    nullable: true
+  objectId:
+    type: string
+    description: SEO related object id
+    nullable: true
+  objectType:
+    type: string
+    description: SEO related object type name
+    nullable: true
+  isActive:
+    type: boolean
+    description: Active/Inactive
+  languageCode:
+    type: string
+    nullable: true
+  shouldSerializeAuditableProperties:
+    type: boolean
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+  modifiedDate:
+    type: string
+    format: date-time
+    nullable: true
+  createdBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  modifiedBy:
+    maxLength: 64
+    minLength: 0
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

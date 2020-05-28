@@ -1,0 +1,13 @@
+type: object
+properties:
+  catalogId:
+    type: string
+    nullable: true
+  isDefault:
+    type: boolean
+  languageCode:
+    type: string
+    nullable: true
+  id:
+    type: string
+    nullable: true

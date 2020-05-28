@@ -1,0 +1,19 @@
+{
+  "FilePath": "e:\\Data\\VirtoCommerce\\Source\\vc-module-catalog\\src\\VirtoCommerce.CatalogModule.Web\\VirtoCommerce.CatalogModule.Web.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-3.0",
+    "LanguageVersion": "3.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-3.0"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 800
+  },
+  "RootNamespace": "VirtoCommerce.CatalogModule.Web",
+  "Documents": [],
+  "SerializationFormat": "0.2"
+}

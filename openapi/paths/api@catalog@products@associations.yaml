@@ -1,0 +1,68 @@
+post:
+  tags:
+    - Catalog module
+  summary: Updates the specified association
+  description: Updates the specified association
+  operationId: CatalogModuleAssociations_UpdateAssociations
+  requestBody:
+    description: The association
+    content:
+      application/json-patch+json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\ProductAssociation.yaml
+          description: The association
+          nullable: true
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\ProductAssociation.yaml
+          description: The association
+          nullable: true
+      text/json:
+        schema:
+          type: array
+          items:
+            $ref: ..\components\schemas\ProductAssociation.yaml
+          description: The association
+          nullable: true
+  responses:
+    '200':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2:
+        - 'catalog:update'
+delete:
+  tags:
+    - Catalog module
+  summary: Deletes specified associations
+  description: Updates the specified association
+  operationId: CatalogModuleAssociations_Delete
+  parameters:
+    - name: ids
+      in: query
+      description: associations to delete ids
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+        description: associations to delete ids
+        nullable: true
+  responses:
+    '200':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2:
+        - 'catalog:delete'

@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Catalog module
+  summary: Gets Catalog by id.
+  description: Gets Catalog by id with full information loaded
+  operationId: CatalogModuleCatalogs_GetCatalog
+  parameters:
+    - name: id
+      in: path
+      description: The Catalog id.
+      required: true
+      schema:
+        type: string
+        description: The Catalog id.
+        nullable: true
+  responses:
+    '200':
+      description: Success
+      content:
+        text/plain:
+          schema:
+            $ref: ..\components\schemas\Catalog.yaml
+        application/json:
+          schema:
+            $ref: ..\components\schemas\Catalog.yaml
+        text/json:
+          schema:
+            $ref: ..\components\schemas\Catalog.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2: []
+delete:
+  tags:
+    - Catalog module
+  summary: Deletes catalog by id.
+  description: Deletes catalog by id
+  operationId: CatalogModuleCatalogs_DeleteCatalog
+  parameters:
+    - name: id
+      in: path
+      description: Catalog id.
+      required: true
+      schema:
+        type: string
+        description: Catalog id.
+        nullable: true
+  responses:
+    '204':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+    - oauth2:
+        - 'catalog:delete'
