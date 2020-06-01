@@ -32,3 +32,7 @@ post:
       description: Forbidden
   security:
     - oauth2: []
+  x-code-samples:
+    - lang: C#
+      source:
+        $ref: ../code_samples/C#/search@categories/post.cs
