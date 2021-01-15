@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.CatalogModule.Core.Model.Search;
 using VirtoCommerce.CatalogModule.Data.Model;
@@ -18,10 +19,13 @@ namespace VirtoCommerce.CatalogModule.Data.Repositories
     {
         private const int batchSize = 500;
 
-        public CatalogRepositoryImpl(CatalogDbContext dbContext)
+        public CatalogRepositoryImpl(CatalogDbContext dbContext, ILogger<CatalogRepositoryImpl> log)
             : base(dbContext)
         {
+            _log = log;
         }
+
+        private readonly ILogger<CatalogRepositoryImpl> _log;
 
         #region ICatalogRepository Members
 
@@ -138,27 +142,37 @@ namespace VirtoCommerce.CatalogModule.Data.Repositories
 
                     if (itemResponseGroup.HasFlag(ItemResponseGroup.ItemProperties))
                     {
+                        var ttStart_PropertyValues = DateTime.Now;
                         await PropertyValues.Include(x => x.DictionaryItem.DictionaryItemValues).Where(x => itemIds.Contains(x.ItemId)).LoadAsync();
+                        _log?.LogInformation($@"-----------------  PropertyValues.LoadAsync {DateTime.Now.Subtract(ttStart_PropertyValues)}");
                     }
 
                     if (itemResponseGroup.HasFlag(ItemResponseGroup.Links))
                     {
+                        var ttStart_DictionaryItemValues = DateTime.Now;
                         await CategoryItemRelations.Where(x => itemIds.Contains(x.ItemId)).LoadAsync();
+                        _log?.LogInformation($@"-----------------  CategoryItemRelations.LoadAsync {DateTime.Now.Subtract(ttStart_DictionaryItemValues)}");
                     }
 
                     if (itemResponseGroup.HasFlag(ItemResponseGroup.ItemAssets))
                     {
+                        var ttStart_Assets = DateTime.Now;
                         await Assets.Where(x => itemIds.Contains(x.ItemId)).LoadAsync();
+                        _log?.LogInformation($@"-----------------  Assets.LoadAsync {DateTime.Now.Subtract(ttStart_Assets)}");
                     }
 
                     if (itemResponseGroup.HasFlag(ItemResponseGroup.ItemEditorialReviews))
                     {
+                        var ttStart_EditorialReviews = DateTime.Now;
                         await EditorialReviews.Where(x => itemIds.Contains(x.ItemId)).LoadAsync();
+                        _log?.LogInformation($@"-----------------  EditorialReviews.LoadAsync {DateTime.Now.Subtract(ttStart_EditorialReviews)}");
                     }
 
                     if (itemResponseGroup.HasFlag(ItemResponseGroup.WithSeo))
                     {
+                        var ttStart_SeoInfos = DateTime.Now;
                         await SeoInfos.Where(x => itemIds.Contains(x.ItemId)).LoadAsync();
+                        _log?.LogInformation($@"-----------------  SeoInfos.LoadAsync {DateTime.Now.Subtract(ttStart_SeoInfos)}");
                     }
 
                     if (itemResponseGroup.HasFlag(ItemResponseGroup.Variations))
@@ -180,7 +194,10 @@ namespace VirtoCommerce.CatalogModule.Data.Repositories
                         {
                             variationsQuery = variationsQuery.Include(x => x.SeoInfos);
                         }
+
+                        var ttStart_variationsQuery = DateTime.Now;
                         await variationsQuery.LoadAsync();
+                        _log?.LogInformation($@"-----------------  variationsQuery.LoadAsync {DateTime.Now.Subtract(ttStart_variationsQuery)}");
                     }
 
                     if (itemResponseGroup.HasFlag(ItemResponseGroup.ItemAssociations))

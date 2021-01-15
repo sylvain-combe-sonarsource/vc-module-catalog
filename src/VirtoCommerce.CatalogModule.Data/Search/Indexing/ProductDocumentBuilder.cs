@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using VirtoCommerce.CatalogModule.Core;
 using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.CatalogModule.Core.Search;
@@ -17,18 +18,24 @@ namespace VirtoCommerce.CatalogModule.Data.Search.Indexing
     {
         private readonly IItemService _itemService;
         private readonly IProductSearchService _productsSearchService;
+        private readonly ILogger<ProductDocumentBuilder> _log;
 
-        public ProductDocumentBuilder(ISettingsManager settingsManager, IItemService itemService, IProductSearchService productsSearchService)
+        public ProductDocumentBuilder(ISettingsManager settingsManager, IItemService itemService, IProductSearchService productsSearchService, ILogger<ProductDocumentBuilder> logger)
             : base(settingsManager)
         {
             _itemService = itemService;
             _productsSearchService = productsSearchService;
+            _log = logger;
         }
 
         public virtual async Task<IList<IndexDocument>> GetDocumentsAsync(IList<string> documentIds)
         {
+            
             var result = new List<IndexDocument>();
+            var ttStart_GetProducts = DateTime.Now;
             var products = await GetProducts(documentIds);
+            _log?.LogInformation($@"=============================  primaryDocumentBuilder.GetDocumentsAsync {DateTime.Now.Subtract(ttStart_GetProducts)}");
+            var ttStart_Variations = DateTime.Now;
             foreach (var product in products)
             {
                 var doc = CreateDocument(product);
@@ -61,7 +68,7 @@ namespace VirtoCommerce.CatalogModule.Data.Search.Indexing
                     while (skipCount < totalCount);
                 }
             }
-
+            _log?.LogInformation($@"=============================  VARIATIONS. foreach (var product in products) {DateTime.Now.Subtract(ttStart_Variations)}");
             return result;
         }
 
