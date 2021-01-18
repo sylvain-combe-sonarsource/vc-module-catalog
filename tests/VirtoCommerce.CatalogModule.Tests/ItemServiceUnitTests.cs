@@ -108,7 +108,7 @@ namespace VirtoCommerce.CatalogModule.Tests
                 platformMemoryCache,
                 _blobUrlResolverMock.Object,
                 _skuGeneratorMock.Object,
-                _log.Object);
+                null);
         }
     }
 }
