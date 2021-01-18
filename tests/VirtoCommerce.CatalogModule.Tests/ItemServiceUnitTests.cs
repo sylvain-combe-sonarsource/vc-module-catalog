@@ -33,6 +33,7 @@ namespace VirtoCommerce.CatalogModule.Tests
         private readonly Mock<IPlatformMemoryCache> _platformMemoryCacheMock;
         private readonly Mock<IBlobUrlResolver> _blobUrlResolverMock;
         private readonly Mock<ISkuGenerator> _skuGeneratorMock;
+        private readonly Mock<ILogger<ItemService>> _log;
 
         public ItemServiceUnitTests()
         {
@@ -106,7 +107,8 @@ namespace VirtoCommerce.CatalogModule.Tests
                 _outlineServiceMock.Object,
                 platformMemoryCache,
                 _blobUrlResolverMock.Object,
-                _skuGeneratorMock.Object);
+                _skuGeneratorMock.Object,
+                _log.Object);
         }
     }
 }

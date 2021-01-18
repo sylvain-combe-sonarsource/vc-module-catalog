@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 using VirtoCommerce.CatalogModule.Core.Events;
 using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.CatalogModule.Core.Services;
@@ -30,6 +31,7 @@ namespace VirtoCommerce.CatalogModule.Data.Services
         private readonly IPlatformMemoryCache _platformMemoryCache;
         private readonly IBlobUrlResolver _blobUrlResolver;
         private readonly ISkuGenerator _skuGenerator;
+        private readonly ILogger<ItemService> _log;
 
         public ItemService(
             Func<ICatalogRepository> catalogRepositoryFactory
@@ -40,7 +42,8 @@ namespace VirtoCommerce.CatalogModule.Data.Services
             , IOutlineService outlineService
             , IPlatformMemoryCache platformMemoryCache
             , IBlobUrlResolver blobUrlResolver
-            , ISkuGenerator skuGenerator)
+            , ISkuGenerator skuGenerator,
+            ILogger<ItemService> log)
         {
             _repositoryFactory = catalogRepositoryFactory;
             _eventPublisher = eventPublisher;
@@ -51,6 +54,7 @@ namespace VirtoCommerce.CatalogModule.Data.Services
             _blobUrlResolver = blobUrlResolver;
             _skuGenerator = skuGenerator;
             _catalogService = catalogService;
+            _log = log;
         }
 
         #region IItemService Members
@@ -77,16 +81,26 @@ namespace VirtoCommerce.CatalogModule.Data.Services
                         cacheEntry.AddExpirationToken(ItemCacheRegion.CreateChangeToken(itemIds));
                         cacheEntry.AddExpirationToken(CatalogCacheRegion.CreateChangeToken());
 
+                        var ttStart_GetItemByIdsAsync = DateTime.Now;
                         products = (await repository.GetItemByIdsAsync(itemIds, respGroup))
                             .Select(x => x.ToModel(AbstractTypeFactory<CatalogProduct>.TryCreateInstance()))
                             .ToArray();
+                        _log?.LogInformation($@"-----------------  repository.GetItemByIdsAsync {DateTime.Now.Subtract(ttStart_GetItemByIdsAsync)}");
                     }
 
                     if (products.Any())
                     {
+                        var ttStart_OrderBy = DateTime.Now;
                         products = products.OrderBy(x => Array.IndexOf(itemIds, x.Id)).ToArray();
+                        _log?.LogInformation($@"-----------------  products.OrderBy {DateTime.Now.Subtract(ttStart_OrderBy)}");
+                        var ttStart_LoadDependenciesAsync = DateTime.Now;
                         await LoadDependenciesAsync(products);
+                        _log?.LogInformation($@"-----------------  LoadDependenciesAsync {DateTime.Now.Subtract(ttStart_LoadDependenciesAsync)}");
+                        var ttStart_ApplyInheritanceRules = DateTime.Now;
                         ApplyInheritanceRules(products);
+                        _log?.LogInformation($@"-----------------  ApplyInheritanceRules {DateTime.Now.Subtract(ttStart_ApplyInheritanceRules)}");
+
+                        var ttStart_Other = DateTime.Now;
 
                         var productsWithVariationsList = products.Concat(products.Where(p => p.Variations != null)
                             .SelectMany(p => p.Variations)).ToArray();
@@ -104,6 +118,8 @@ namespace VirtoCommerce.CatalogModule.Data.Services
                         {
                             product.ReduceDetails(itemResponseGroup.ToString());
                         }
+
+                        _log?.LogInformation($@"-----------------  Other {DateTime.Now.Subtract(ttStart_Other)}");
                     }
                 }
 
