@@ -123,3 +123,11 @@ jobs:
         uses: VirtoCommerce/vc-github-actions/publish-manifest@master
         with:
           packageUrl: ${{ steps.blobRelease.outputs.packageUrl }}
+
+      - name: Update virtocommerce.com catalog
+        uses: VirtoCommerce/vc-github-actions/update-virtocommercecom@VP-1985
+        with:
+          githubToken: ${{ secrets.REPO_TOKEN }}
+          login: ${{ secrets.VIRTOCOMMERCE_APP_ID }}
+          password: ${{ secrets.VIRTOCOMMERCE_SECRET }}
+          moduleId: ${{ steps.image.outputs.moduleId }}
