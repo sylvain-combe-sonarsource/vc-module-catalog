@@ -13,6 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  sonar.scanner.opt: '-XmX1g'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -28,6 +29,9 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'sylvain-combe-sonarsource_vc-module-catalog'
     projectName: 'vc-module-catalog'
+    extraProperties: |
+      sonar.verbose=true
+    
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
