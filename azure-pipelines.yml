@@ -13,7 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  sonar.scanner.opt: '-XmX1g'
+  sonar.scanner.opts: '-XmX1g'
 
 steps:
 - task: NuGetToolInstaller@1
